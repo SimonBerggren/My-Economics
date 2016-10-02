@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_weight="1">
+
+    <tabs android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <tab
+            id="@+id/tab_home"
+            icon="@drawable/home_icon"
+            title="Home"
+            layout_width="wrap_content"
+            layout_height="wrap_content" />
+        <tab
+            id="@+id/tab_economy"
+            icon="@drawable/economy_icon"
+            title="Economy"
+            layout_width="wrap_content"
+            layout_height="wrap_content" />
+        <tab
+        id="@+id/tab_statistics"
+        icon="@drawable/statistics_icon"
+        title="Statistics"
+        layout_width="wrap_content"
+        layout_height="wrap_content" />
+        <tab
+            id="@+id/tab_profile"
+            icon="@drawable/user_icon"
+            title="User"
+            layout_width="wrap_content"
+            layout_height="wrap_content" />
+        <tab
+            id="@+id/tab_settings"
+            icon="@drawable/settings_icon"
+            title="Settings"
+            layout_width="wrap_content"
+            layout_height="wrap_content" />
+    </tabs>
+
+</LinearLayout>

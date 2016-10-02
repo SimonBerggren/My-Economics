@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <item android:id="@+id/Bottombaritemtwo"
+        android:icon="@drawable/economy_icon"
+        android:title="Economy">
+    </item>
+    <item android:id="@+id/Bottombaritemthree"
+        android:icon="@drawable/user_icon"
+        android:title="User">
+    </item>
+    <item android:id="@+id/Bottombaritemfour"
+        android:icon="@drawable/statistics_icon"
+        android:title="Statistics">
+    </item>
+    <item android:id="@+id/Bottombaritemfive"
+        android:icon="@drawable/settings_icon"
+        android:title="Settings">
+    </item>
+</menu>
