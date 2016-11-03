@@ -1,20 +1,18 @@
 package com.berggrentech.myeconomics;
 
-import android.content.Context;
 import android.content.SharedPreferences;
-import android.database.sqlite.SQLiteDatabase;
-import android.os.PersistableBundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.AttributeSet;
-import android.view.View;
 
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabSelectListener;
 
+/**
+ * Created by Simon Berggren for assignment 1 in the course Development of Mobile Devices.
+ */
 public class MainActivity extends AppCompatActivity {
     public static DatabaseManager DBM;
     public static int ID;
@@ -50,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
 
     public void setFragment(Fragment fragment, String _Tag) {
         FragmentManager fm = getSupportFragmentManager();

@@ -10,11 +10,11 @@ import java.util.ArrayList;
 import java.util.Date;
 
 /**
- * Created by Simon on 2016-09-12.
+ * Created by Simon Berggren for assignment 1 in the course Development of Mobile Devices.
  */
-public class DatabaseManager extends SQLiteOpenHelper {
+class DatabaseManager extends SQLiteOpenHelper {
 
-    Context mParent;
+    private Context parent;
 
     // database info
     private static final int DATABASE_VERSION = 1;
@@ -23,23 +23,23 @@ public class DatabaseManager extends SQLiteOpenHelper {
     private static final String TABLE_ENTRIES = "entries";
 
     // user columns
-    public static final String COLUMN_ID = "id";
-    public static final String COLUMN_FIRSTNAME = "firstname";
-    public static final String COLUMN_LASTNAME = "lastname";
-    public static final String COLUMN_EMAIL = "email";
-    public static final String COLUMN_PASSWORD = "password";
+    private static final String COLUMN_ID = "id";
+    private static final String COLUMN_FIRST_NAME = "firstname";
+    private static final String COLUMN_LAST_NAME = "lastname";
+    private static final String COLUMN_EMAIL = "email";
+    private static final String COLUMN_PASSWORD = "password";
 
     // incomes and expenses columns
-    public static final String COLUMN_TITLE = "title";
-    public static final String COLUMN_DATE = "date";
-    public static final String COLUMN_SUM = "sum";
-    public static final String COLUMN_CATEGORY = "category";
-    public static final String COLUMN_TYPE = "type";    // income or expense
-    public static final String COLUMN_OWNER = "owner";  // id of user
+    private static final String COLUMN_TITLE = "title";
+    private static final String COLUMN_DATE = "date";
+    private static final String COLUMN_SUM = "sum";
+    private static final String COLUMN_CATEGORY = "category";
+    private static final String COLUMN_TYPE = "type";    // income or expense
+    private static final String COLUMN_OWNER = "owner";  // id of user
 
-    public DatabaseManager(Context _Parent) {
+    DatabaseManager(Context _Parent) {
         super(_Parent, DATABASE_NAME, null, DATABASE_VERSION);
-        mParent = _Parent;
+        parent = _Parent;
     }
 
     @Override
@@ -49,8 +49,8 @@ public class DatabaseManager extends SQLiteOpenHelper {
         String CREATE_USERS_TABLE = "CREATE TABLE " +
                 TABLE_USERS + "("
                 + COLUMN_ID  + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + COLUMN_FIRSTNAME  + " TEXT NOT NULL, "
-                + COLUMN_LASTNAME   + " TEXT NOT NULL,"
+                + COLUMN_FIRST_NAME + " TEXT NOT NULL, "
+                + COLUMN_LAST_NAME + " TEXT NOT NULL,"
                 + COLUMN_EMAIL      + " TEXT NOT NULL, "
                 + COLUMN_PASSWORD   + " TEXT NOT NULL"
                 + ")";
@@ -78,10 +78,11 @@ public class DatabaseManager extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void addUser(User user) {
+    // adds a user to the database
+    void addUser(User user) {
         ContentValues values = new ContentValues();
-        values.put(COLUMN_FIRSTNAME, user.getFirstName());
-        values.put(COLUMN_LASTNAME, user.getLastName());
+        values.put(COLUMN_FIRST_NAME, user.getFirstName());
+        values.put(COLUMN_LAST_NAME, user.getLastName());
         values.put(COLUMN_EMAIL, user.getEmail());
         values.put(COLUMN_PASSWORD, user.getPassword());
 
@@ -91,9 +92,9 @@ public class DatabaseManager extends SQLiteOpenHelper {
         db.close();
     }
 
-    // returns user from database if exist
-    // returns null if not exist
-    public User getUser(String _Email) {
+    // returns user from database if the user exists
+    // returns null if the user does not exist
+    User getUser(String _Email) {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.query(
                 TABLE_USERS,            // table to query
@@ -110,12 +111,12 @@ public class DatabaseManager extends SQLiteOpenHelper {
         // if user is found, get info
         if (cursor.moveToFirst()) {
             int id = cursor.getInt(0);
-            String firstname = cursor.getString(1);
-            String lastname = cursor.getString(2);
+            String firstName = cursor.getString(1);
+            String lastName = cursor.getString(2);
             String email = cursor.getString(3);
             String password = cursor.getString(4);
 
-            user = new User(id, firstname, lastname, email, password);
+            user = new User(id, firstName, lastName, email, password);
             cursor.close();
         }
 
@@ -124,11 +125,12 @@ public class DatabaseManager extends SQLiteOpenHelper {
         return user;
     }
 
-    public void updateUser(User _User) {
+    // updates a users info
+    void updateUser(User _User) {
         ContentValues values = new ContentValues();
 
-        values.put(COLUMN_FIRSTNAME, _User.getFirstName());
-        values.put(COLUMN_LASTNAME, _User.getLastName());
+        values.put(COLUMN_FIRST_NAME, _User.getFirstName());
+        values.put(COLUMN_LAST_NAME, _User.getLastName());
         values.put(COLUMN_EMAIL, _User.getEmail());
         values.put(COLUMN_PASSWORD, _User.getPassword());
 
@@ -148,79 +150,73 @@ public class DatabaseManager extends SQLiteOpenHelper {
     // in case the app's language is in another language than english
     // we don't want to add entries with categories in another language
     // so we translate them into english
-    public String typeToDB(String _Type) {
-        if(_Type.equalsIgnoreCase(mParent.getResources().getString(R.string.type_income_text))){
-            return mParent.getResources().getString(R.string.db_type_income);
-        } else if(_Type.equalsIgnoreCase(mParent.getResources().getString(R.string.type_expense_text))){
-            return mParent.getResources().getString(R.string.db_type_expense);
+    String typeToDB(String _Type) {
+        if(_Type.equalsIgnoreCase(parent.getResources().getString(R.string.type_income_text))){
+            return parent.getResources().getString(R.string.db_type_income);
+        } else if(_Type.equalsIgnoreCase(parent.getResources().getString(R.string.type_expense_text))){
+            return parent.getResources().getString(R.string.db_type_expense);
         } else {
             return "";
         }
     }
 
-    public String typeFromDB(String _Type) {
-        if(_Type.equalsIgnoreCase(mParent.getResources().getString(R.string.db_type_income))){
-            return  mParent.getResources().getString(R.string.type_income_text);
-        } else if(_Type.equalsIgnoreCase(mParent.getResources().getString(R.string.db_type_expense))){
-            return mParent.getResources().getString(R.string.type_expense_text);
+    // same argument as above
+    private String categoryToDB(String _Category) {
+        if(_Category.equalsIgnoreCase(parent.getResources().getString(R.string.category_entertainment_text))){
+            return parent.getResources().getString(R.string.db_category_entertainment);
+        } else if(_Category.equalsIgnoreCase(parent.getResources().getString(R.string.category_food_text))){
+            return parent.getResources().getString(R.string.db_category_food);
+        } else if(_Category.equalsIgnoreCase(parent.getResources().getString(R.string.category_household_text))){
+            return parent.getResources().getString(R.string.db_category_household);
+        } else if(_Category.equalsIgnoreCase(parent.getResources().getString(R.string.category_transport_text))){
+            return parent.getResources().getString(R.string.db_category_transport);
+        } else if(_Category.equalsIgnoreCase(parent.getResources().getString(R.string.category_shopping_text))){
+            return parent.getResources().getString(R.string.db_category_shopping);
+        } else if(_Category.equalsIgnoreCase(parent.getResources().getString(R.string.category_other_text))){
+            return parent.getResources().getString(R.string.db_category_other);
+        } else if(_Category.equalsIgnoreCase(parent.getResources().getString(R.string.category_savings_text))){
+            return parent.getResources().getString(R.string.db_category_savings);
+        } else if(_Category.equalsIgnoreCase(parent.getResources().getString(R.string.category_salary_text))){
+            return parent.getResources().getString(R.string.db_category_salary);
         } else {
             return "";
         }
     }
 
-    public String categoryToDB(String _Category) {
-        if(_Category.equalsIgnoreCase(mParent.getResources().getString(R.string.category_entertainment_text))){
-            return mParent.getResources().getString(R.string.db_category_entertainment);
-        } else if(_Category.equalsIgnoreCase(mParent.getResources().getString(R.string.category_food_text))){
-            return mParent.getResources().getString(R.string.db_category_food);
-        } else if(_Category.equalsIgnoreCase(mParent.getResources().getString(R.string.category_household_text))){
-            return mParent.getResources().getString(R.string.db_category_household);
-        } else if(_Category.equalsIgnoreCase(mParent.getResources().getString(R.string.category_transport_text))){
-            return mParent.getResources().getString(R.string.db_category_transport);
-        } else if(_Category.equalsIgnoreCase(mParent.getResources().getString(R.string.category_shopping_text))){
-            return mParent.getResources().getString(R.string.db_category_shopping);
-        } else if(_Category.equalsIgnoreCase(mParent.getResources().getString(R.string.category_other_text))){
-            return mParent.getResources().getString(R.string.db_category_other);
-        } else if(_Category.equalsIgnoreCase(mParent.getResources().getString(R.string.category_savings_text))){
-            return mParent.getResources().getString(R.string.db_category_savings);
-        } else if(_Category.equalsIgnoreCase(mParent.getResources().getString(R.string.category_salary_text))){
-            return mParent.getResources().getString(R.string.db_category_salary);
+    // same argument as above
+    private String categoryFromDB(String _Category) {
+        if(_Category.equalsIgnoreCase(parent.getResources().getString(R.string.db_category_entertainment))){
+            return parent.getResources().getString(R.string.category_entertainment_text);
+        } else if(_Category.equalsIgnoreCase(parent.getResources().getString(R.string.db_category_food))){
+            return parent.getResources().getString(R.string.category_food_text);
+        } else if(_Category.equalsIgnoreCase(parent.getResources().getString(R.string.db_category_household))){
+            return parent.getResources().getString(R.string.category_household_text);
+        } else if(_Category.equalsIgnoreCase(parent.getResources().getString(R.string.db_category_transport))){
+            return parent.getResources().getString(R.string.category_transport_text);
+        } else if(_Category.equalsIgnoreCase(parent.getResources().getString(R.string.category_shopping_text))){
+            return parent.getResources().getString(R.string.category_shopping_text);
+        } else if(_Category.equalsIgnoreCase(parent.getResources().getString(R.string.db_category_other))){
+            return parent.getResources().getString(R.string.category_other_text);
+        } else if(_Category.equalsIgnoreCase(parent.getResources().getString(R.string.db_category_savings))){
+            return parent.getResources().getString(R.string.category_savings_text);
+        } else if(_Category.equalsIgnoreCase(parent.getResources().getString(R.string.db_category_salary))){
+            return parent.getResources().getString(R.string.category_salary_text);
         } else {
             return "";
         }
     }
 
-    public String categoryFromDB(String _Category) {
-        if(_Category.equalsIgnoreCase(mParent.getResources().getString(R.string.db_category_entertainment))){
-            return mParent.getResources().getString(R.string.category_entertainment_text);
-        } else if(_Category.equalsIgnoreCase(mParent.getResources().getString(R.string.db_category_food))){
-            return mParent.getResources().getString(R.string.category_food_text);
-        } else if(_Category.equalsIgnoreCase(mParent.getResources().getString(R.string.db_category_household))){
-            return mParent.getResources().getString(R.string.category_household_text);
-        } else if(_Category.equalsIgnoreCase(mParent.getResources().getString(R.string.db_category_transport))){
-            return mParent.getResources().getString(R.string.category_transport_text);
-        } else if(_Category.equalsIgnoreCase(mParent.getResources().getString(R.string.category_shopping_text))){
-            return mParent.getResources().getString(R.string.category_shopping_text);
-        } else if(_Category.equalsIgnoreCase(mParent.getResources().getString(R.string.db_category_other))){
-            return mParent.getResources().getString(R.string.category_other_text);
-        } else if(_Category.equalsIgnoreCase(mParent.getResources().getString(R.string.db_category_savings))){
-            return mParent.getResources().getString(R.string.category_savings_text);
-        } else if(_Category.equalsIgnoreCase(mParent.getResources().getString(R.string.db_category_salary))){
-            return mParent.getResources().getString(R.string.category_salary_text);
-        } else {
-            return "";
-        }
-    }
-
-    public ArrayList<Entry> getEntries(int _ID) {
+    ArrayList<Entry> getEntries(int _ID) {
         return getEntries(_ID, "all", "all");
     }
 
-    public ArrayList<Entry> getEntries(int _ID, String _Type, String _Category) {
+    ArrayList<Entry> getEntries(int _ID, String _Type, String _Category) {
         return getEntries(_ID, _Type, _Category, "", "");
     }
 
-    public ArrayList<Entry> getEntries(int _ID, String _Type, String _Category, String _DateFrom, String _DateTo) {
+    // returns a list of entries of the database base upon parameters
+    // every parameter is optional, except for the users id
+    ArrayList<Entry> getEntries(int _ID, String _Type, String _Category, String _DateFrom, String _DateTo) {
 
         Utils.Log("Getting entries....");
 
@@ -305,7 +301,8 @@ public class DatabaseManager extends SQLiteOpenHelper {
         return result;
     }
 
-    public void addEntry(int _ID, Entry _Entry) {
+    // adds a new income or expense to the database
+    void addEntry(int _ID, Entry _Entry) {
         ContentValues values = new ContentValues();
         values.put(COLUMN_TITLE, _Entry.getTitle());
         values.put(COLUMN_DATE, Utils.dateToString(_Entry.getDate()));
@@ -319,7 +316,8 @@ public class DatabaseManager extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void updateEntry(int _ID, Entry _Entry) {
+    // updates an existing entry in the database
+    void updateEntry(int _ID, Entry _Entry) {
         ContentValues values = new ContentValues();
 
         values.put(COLUMN_TITLE, _Entry.getTitle());
@@ -341,7 +339,8 @@ public class DatabaseManager extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void removeEntry(int _ID) {
+    // removes an entry from the database
+    void removeEntry(int _ID) {
         String selection = COLUMN_ID + " = ?";
         String[] selectionArguments = {String.valueOf(_ID)};
         SQLiteDatabase db = this.getWritableDatabase();

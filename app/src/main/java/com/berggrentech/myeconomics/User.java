@@ -1,10 +1,7 @@
 package com.berggrentech.myeconomics;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
 /**
- * Created by Simon on 2016-09-12.
+ * Created by Simon Berggren for assignment 1 in the course Development of Mobile Devices.
  */
 public class User {
     private int mID;
@@ -29,37 +26,37 @@ public class User {
 
     // getters
 
-    public int getID() { return mID; }
+    int getID() { return mID; }
 
-    public String getFirstName() {
+    String getFirstName() {
         return mFirstName;
     }
 
-    public String getLastName() {
+    String getLastName() {
         return mLastName;
     }
 
-    public String getEmail() {
+    String getEmail() {
         return mEmail;
     }
 
-    public String getPassword() {
+    String getPassword() {
         return mPassword;
     }
 
-    public void setFirstName(String _FirstName) {
+    void setFirstName(String _FirstName) {
         mFirstName = _FirstName;
     }
 
-    public void setLastName(String _LastName) {
+    void setLastName(String _LastName) {
         mLastName = _LastName;
     }
 
-    public void setEmail(String _Email) {
+    void setEmail(String _Email) {
         mEmail = _Email;
     }
 
-    public  void setPassword(String _Password) {
+    void setPassword(String _Password) {
         mPassword = _Password;
     }
 }

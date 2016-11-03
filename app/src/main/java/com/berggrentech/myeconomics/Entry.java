@@ -3,17 +3,17 @@ package com.berggrentech.myeconomics;
 import java.util.Date;
 
 /**
- * Created by Simon on 2016-09-16.
+ * Created by Simon Berggren for assignment 1 in the course Development of Mobile Devices.
  */
-public class Entry {
-    int mID;
-    String mTitle;
-    Date mDate;
-    int mSum;
-    String mCategory;
-    String mType;
+class Entry {
+    private int mID;
+    private String mTitle;
+    private Date mDate;
+    private int mSum;
+    private String mCategory;
+    private String mType;
 
-    public Entry(int _ID, String _Title, Date _Date, int _Sum, String _Category, String _Type) {
+    Entry(int _ID, String _Title, Date _Date, int _Sum, String _Category, String _Type) {
         mID  = _ID;
         mTitle = _Title;
         mDate = _Date;
@@ -21,36 +21,37 @@ public class Entry {
         mCategory = _Category;
         mType = _Type;
     }
-    public Entry(String _Title, Date _Date, int _Sum, String _Category, String _Type) {
+
+    Entry(String _Title, Date _Date, int _Sum, String _Category, String _Type) {
         this(0, _Title, _Date, _Sum, _Category, _Type);
     }
 
-    public String getTitle() { return mTitle; }
-    public Date getDate() { return mDate; }
-    public int getSum() { return mSum; }
-    public String getCategory() { return mCategory; }
-    public String getType() { return mType; }
-    public int getID() {
+    String getTitle() { return mTitle; }
+    Date getDate() { return mDate; }
+    int getSum() { return mSum; }
+    String getCategory() { return mCategory; }
+    String getType() { return mType; }
+    int getID() {
         return mID;
     }
 
-    public void setTitle(String _Title) {
+    void setTitle(String _Title) {
         mTitle = _Title;
     }
 
-    public void setDate(Date _Date) {
+    void setDate(Date _Date) {
         mDate = _Date;
     }
 
-    public void setSum(int _Sum) {
+    void setSum(int _Sum) {
         mSum = _Sum;
     }
 
-    public void setCategory(String _Category) {
+    void setCategory(String _Category) {
         mCategory = _Category;
     }
 
-    public void setType(String _Type) {
+   void setType(String _Type) {
         mType = _Type;
     }
 

@@ -132,7 +132,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Email"
+                    android:text="Email: "
                     android:id="@+id/email_desc"
                     android:textSize="@dimen/text_size_small"
                     />
@@ -193,7 +193,7 @@
                 >
                 <TextView
                     android:id="@+id/first_entry_desc"
-                    android:text="First Entry"
+                    android:text="First Entry: "
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/text_size_small"
@@ -215,7 +215,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Last Entry"
+                    android:text="Last Entry: "
                     android:id="@+id/last_entry"
                     android:textSize="@dimen/text_size_small"/>
 
@@ -237,7 +237,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Total Income"
+                    android:text="Total Income: "
                     android:id="@+id/total_income_desc"
                     android:textSize="@dimen/text_size_small"
                     />
@@ -258,7 +258,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Total Expense"
+                    android:text="Total Expense: "
                     android:id="@+id/total_expense_desc"
                     android:textSize="@dimen/text_size_small"
                     />

@@ -15,7 +15,7 @@ import android.widget.ViewSwitcher;
 import java.util.List;
 
 /**
- * Created by Simon on 2016-09-08.
+ * Created by Simon Berggren for assignment 1 in the course Development of Mobile Devices.
  */
 public class ProfileFragment extends Fragment {
 

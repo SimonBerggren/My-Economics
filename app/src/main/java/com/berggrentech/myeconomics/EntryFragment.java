@@ -20,6 +20,9 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Created by Simon Berggren for assignment 1 in the course Development of Mobile Devices.
+ */
 public class EntryFragment extends DialogFragment {
     private DialogInterface.OnDismissListener onDismissListener;
 

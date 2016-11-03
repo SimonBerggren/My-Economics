@@ -11,7 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 /**
- * A placeholder fragment containing a simple view.
+ * Created by Simon Berggren for assignment 1 in the course Development of Mobile Devices.
  */
 public class LoginFragment extends Fragment {
 
@@ -48,8 +48,6 @@ public class LoginFragment extends Fragment {
                     email = etEmail.getText().toString().toLowerCase().trim();
                     password = etPassword.getText().toString();
                 }
-
-
 
                 User user;
 

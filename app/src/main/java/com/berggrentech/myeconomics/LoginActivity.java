@@ -9,10 +9,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
 /**
- * Created by Simon on 2016-09-26.
+ * Created by Simon Berggren for assignment 1 in the course Development of Mobile Devices.
  */
 
-public class LoginActivity extends AppCompatActivity {
+class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -42,12 +42,8 @@ public class LoginActivity extends AppCompatActivity {
         db.execSQL(query);
         db.close();
 
-
-
         User user = Utils.getUserPref();
-        if(user == null) {
-
-        } else {
+        if(user != null) {
             MainActivity.ID = user.getID();
             MainActivity.USER = user;
             Toast.makeText(this, "going to main!", Toast.LENGTH_SHORT).show();

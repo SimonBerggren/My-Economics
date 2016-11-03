@@ -30,8 +30,8 @@ public class RegisterFragment extends DialogFragment {
             public void onClick(View v) {
 
                 // get form info
-                String firstname = etFirstName.getText().toString();
-                String lastname = etLastName.getText().toString();
+                String firstName = etFirstName.getText().toString();
+                String lastName = etLastName.getText().toString();
                 String email = etEmail.getText().toString();
                 String confEmail = etConfEmail.getText().toString();
                 String password = etPassword.getText().toString();
@@ -40,18 +40,14 @@ public class RegisterFragment extends DialogFragment {
                 if(!email.trim().equalsIgnoreCase(confEmail.trim())) {
                     // email doesn't match
                     Toast.makeText(getActivity(), "Emails doesn't match!", Toast.LENGTH_SHORT).show();
-                    Toast.makeText(getActivity(), "1: " + email, Toast.LENGTH_SHORT).show();
-                    Toast.makeText(getActivity(), "2: " + confEmail, Toast.LENGTH_SHORT).show();
                 } else if (!password.trim().equalsIgnoreCase(confPassword.trim())) {
                     // password doesn't match
                     Toast.makeText(getActivity(), "Passwords doesn't match!", Toast.LENGTH_SHORT).show();
-                    Toast.makeText(getActivity(), "1: " + password, Toast.LENGTH_SHORT).show();
-                    Toast.makeText(getActivity(), "2: " + confPassword, Toast.LENGTH_SHORT).show();
                 } else {
                     // hash pw
 
                     // everything is set, try to add user
-                    MainActivity.DBM.addUser(new User(firstname, lastname, email, password));
+                    MainActivity.DBM.addUser(new User(firstName, lastName, email, password));
 
                     // check if user exist (make addUser a bool)
                     // if ok
@@ -72,11 +68,4 @@ public class RegisterFragment extends DialogFragment {
 
         return view;
     }
-    /*@Override
-    public void onResume() {
-        super.onResume();
-        int width = getResources().getDisplayMetrics().widthPixels;
-        int height = getResources().getDisplayMetrics().heightPixels;
-        getDialog().getWindow().setLayout(width, height);
-    }*/
 }

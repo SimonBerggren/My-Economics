@@ -15,7 +15,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Created by Simon on 2016-09-08.
+ * Created by Simon Berggren for assignment 1 in the course Development of Mobile Devices.
  */
 public class StatisticsFragment extends Fragment {
     @Override
@@ -26,6 +26,7 @@ public class StatisticsFragment extends Fragment {
         List<com.github.mikephil.charting.data.Entry> incomes = new ArrayList<>();
         List<com.github.mikephil.charting.data.Entry> expenses = new ArrayList<>();
 
+        // add data to a line graph
         for(com.berggrentech.myeconomics.Entry e : entries) {
             if(e.getType().equalsIgnoreCase(getResources().getString(R.string.db_type_income)))
                 incomes.add(new com.github.mikephil.charting.data.Entry(Utils.dayOfDate(e.getDate()), e.getSum()));

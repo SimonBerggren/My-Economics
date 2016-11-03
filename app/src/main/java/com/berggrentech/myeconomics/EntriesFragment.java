@@ -1,5 +1,6 @@
 package com.berggrentech.myeconomics;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -23,7 +24,7 @@ import java.util.List;
 import java.util.TimerTask;
 
 /**
- * Created by Simon on 2016-09-08.
+ * Created by Simon Berggren for assignment 1 in the course Development of Mobile Devices.
  */
 public class EntriesFragment extends Fragment {
     Spinner dropdownCategories;
@@ -125,11 +126,11 @@ public class EntriesFragment extends Fragment {
             }
         });
 
+        @SuppressLint("ValidFragment")
         class DateToDialogFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener{
 
-            public DateToDialogFragment()
-            {
-            }
+            public DateToDialogFragment() { }
+
             @Override
             public Dialog onCreateDialog(Bundle savedInstanceState) {
 
@@ -146,11 +147,13 @@ public class EntriesFragment extends Fragment {
 
                 return new DatePickerDialog(getActivity(), this, year, month - 1, day);
             }
+
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                 dateTo = Utils.dateToString(Utils.createDate(year, monthOfYear+1, dayOfMonth));
                 updateList();
             }
+
             @Override
             public void onCancel(DialogInterface dialog) {
                 dateTo = "";
@@ -158,6 +161,7 @@ public class EntriesFragment extends Fragment {
             }
         }
 
+        @SuppressLint("ValidFragment")
         class DateFromDialogFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener{
 
             public DateFromDialogFragment()
@@ -179,11 +183,13 @@ public class EntriesFragment extends Fragment {
 
                 return new DatePickerDialog(getActivity(), this, year, month - 1, day);
             }
+
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                 dateFrom = Utils.dateToString(Utils.createDate(year, monthOfYear+1, dayOfMonth));
                 updateList();
             }
+
             @Override
             public void onCancel(DialogInterface dialog) {
                 dateFrom = "";

@@ -11,7 +11,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 /**
- * Created by Simon on 2016-09-17.
+ * Created by Simon Berggren for assignment 1 in the course Development of Mobile Devices.
  */
 public class OverviewFragment extends Fragment {
     @Nullable

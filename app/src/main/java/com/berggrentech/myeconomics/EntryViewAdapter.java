@@ -14,14 +14,14 @@ import java.util.ArrayList;
 import java.util.TimerTask;
 
 /**
- * Created by Simon on 2016-09-15.
+ * Created by Simon Berggren for assignment 1 in the course Development of Mobile Devices.
  */
-public class EntryViewAdapter extends EntryViewAnimated.AnimatedExpandableListAdapter {
-    ArrayList<Entry> mEntries;
-    EntriesFragment mParent;
-    LayoutInflater mInflater;
+class EntryViewAdapter extends EntryViewAnimated.AnimatedExpandableListAdapter {
+    private ArrayList<Entry> mEntries;
+    private EntriesFragment mParent;
+    private LayoutInflater mInflater;
 
-    public EntryViewAdapter(EntriesFragment _Parent, ArrayList<Entry> _Entries) {
+    EntryViewAdapter(EntriesFragment _Parent, ArrayList<Entry> _Entries) {
         super();
         mEntries = _Entries;
         mParent = _Parent;

@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 /**
- * Created by Simon on 2016-09-08.
+ * Created by Simon Berggren for assignment 1 in the course Development of Mobile Devices.
  */
 public class SettingsFragment extends Fragment {
     @Nullable
